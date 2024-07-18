@@ -11,11 +11,11 @@ jobs:
       # Required to commit findings to repository
       contents: write
     steps:
-      - name: install llvm
+      - name: Install llvm & lcov
         run: |
           sudo apt update
           sudo apt install cmake clang llvm lcov
-      - name: install missing library on ubuntu 24.04
+      - name: Install missing library on ubuntu 24.04
         run: sudo apt install libclang-rt-dev || true
       - name: checkout
         uses: "actions/checkout@v4"
