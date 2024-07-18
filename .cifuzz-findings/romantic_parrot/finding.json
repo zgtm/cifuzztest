@@ -1,0 +1,41 @@
+{
+  "name": "romantic_parrot",
+  "type": "RUNTIME_ERROR",
+  "input_data": "/////9IClkn/////",
+  "logs": [
+    "/home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19: runtime error: division by zero",
+    "    #0 0x560dee67ef42 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19",
+    "    #1 0x560dee67ef42 in LLVMFuzzerTestOneInput /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:9:1",
+    "    #2 0x560dee5a5343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x40343) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #3 0x560dee5a4a99 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x3fa99) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #4 0x560dee5a6289 in fuzzer::Fuzzer::MutateAndTestOne() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41289) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #5 0x560dee5a6e05 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e \u003e\u0026) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41e05) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #6 0x560dee594f42 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x2ff42) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #7 0x560dee5bec32 in main (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x59c32) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #8 0x7fc2b0829d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #9 0x7fc2b0829e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #10 0x560dee589984 in _start (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x24984) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19 in MS: 5 CMP-CopyPart-CopyPart-CMP-EraseBytes- DE: \"\\377\\377\\377\\377\\377\\377\\377\\377\"-\"\\322\\002\\226I\"-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc",
+    "0xff,0xff,0xff,0xff,0xd2,0x2,0x96,0x49,0xff,0xff,0xff,0xff,",
+    "\\377\\377\\377\\377\\322\\002\\226I\\377\\377\\377\\377",
+    "artifact_prefix='/tmp/libfuzzer-out-2479737574/'; Test unit written to .cifuzz-findings/romantic_parrot/crashing-input",
+    "Base64: /////9IClkn/////"
+  ],
+  "details": "undefined behavior: division by zero",
+  "more_details": {
+    "id": "undefined_behavior"
+  },
+  "created_at": "2024-07-18T15:41:02.13691389Z",
+  "input_file": ".cifuzz-findings/romantic_parrot/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "my_fuzz_test.cpp",
+      "Line": 17,
+      "Column": 19,
+      "FrameNumber": 0,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "my_fuzz_test"
+}
