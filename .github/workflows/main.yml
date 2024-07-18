@@ -42,7 +42,7 @@ jobs:
         with:
           sarif_file: results.sarif
           
-      - name: Commit findings to repository
+      - name: Commit findings and corpus to repository
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
