@@ -13,6 +13,9 @@ FUZZ_TEST(const uint8_t *data, size_t size) {
   //
   FuzzedDataProvider fuzzed_data(data, size);
   int my_int = fuzzed_data.ConsumeIntegral<int64_t>();
+
+  my_int = 100000 / (1234567890 - my_int);
+  
   assert(my_int != 1234567890);
 
 
