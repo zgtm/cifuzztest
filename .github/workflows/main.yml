@@ -10,15 +10,18 @@ jobs:
         run: |
           sudo apt update
           sudo apt install cmake clang llvm lcov
-      - name: install missing tools on ubuntu 24.04
+      - name: install missing library on ubuntu 24.04
         run: sudo apt install libclang-rt-dev || true
       - name: checkout
         uses: "actions/checkout@v4"
-      - run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
-      - run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
-      - run: cifuzz findings --format=json --output=results.sarif
+      - name: install cifuzz
+        run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
+      - name: fuzz project
+        continue-on-error: true
+        run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
+      - name: generate sarif report
+        run: cifuzz findings --format=json --output=results.sarif
       - name: Upload SARIF file
-        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
