@@ -7,7 +7,10 @@ jobs:
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
     steps:
       - run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
+      - ls -l ~/.local/share
   run-cifuzz:
     runs-on: ubuntu-latest
     steps:
+      - ls -l ~/.local/share
       - run: cifuzz run
+      
