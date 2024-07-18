@@ -47,5 +47,6 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .cifuzz-findings
+          git add .cifuzz-corpus
           git commit -m "Automated check-in of cifuzz findings"
           git push
