@@ -9,7 +9,10 @@ jobs:
       - name: install llvm
         run: |
           sudo apt update
-          sudo apt install llvm-15 llvm-15-dev llvm-15-linker-tools llvm-15-runtime llvm-15-tools
+          sudo apt install cmake clang llvm lcov
+      - name: install missing tools on ubuntu 24.04
+        continue-on-error: true
+        run: sudo apt install libclang-rt-dev
       - name: checkout
         uses: "actions/checkout@v4"
       - run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
