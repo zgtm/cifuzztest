@@ -1,22 +1,24 @@
 name: fuzz_with_cifuzz
 on: [push]
 jobs:
-  download-cifuzz:
+  fuzz:
     runs-on: ubuntu-latest
     env: 
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
     steps:
       - name: checkout
         uses: "actions/checkout@v4"
-      - run: ls -l 
       - run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
-      - run: ls -l ~/.local/share
-      
-  run-cifuzz:
-    runs-on: ubuntu-latest
-    needs: download-cifuzz
-    steps:
-      - run: ls -l 
-      - run: ls -l ~/.local/share
-      - run: cifuzz run
-      
+      - run: cifuzz run --max-fuzzing-duration 15s
+      - run: cifuzz findings --format=json --output=results.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
+      - name: commit findings
+        run: |
+          git config --global user.name 'Github Actions'
+          git config --global user.email 'zgtm@users.noreply.github.com'
+          git add .cifuzz-findings
+          git commit -m "Automated check-in of cifuzz findings"
+          git push
