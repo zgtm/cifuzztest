@@ -20,7 +20,7 @@ jobs:
         continue-on-error: true
         run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
       - name: generate sarif report
-        run: cifuzz findings --format=json --output=results.sarif
+        run: cifuzz findings --format=sarif --output=results.sarif
       - name: print sarif report
         run: cat results.sarif
       - name: Upload SARIF file
