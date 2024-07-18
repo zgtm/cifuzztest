@@ -6,8 +6,10 @@ jobs:
     env: 
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
     permissions:
-      # required sarif upload
+      # required to upload code scanning results (SARIF)
       security-events: write
+      # required to commit findings to repository
+      contents: write
     steps:
       - name: install llvm
         run: |
