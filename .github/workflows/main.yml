@@ -6,9 +6,9 @@ jobs:
     env: 
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
     permissions:
-      # required to upload code scanning results (SARIF)
+      # Required to Upload findings to Github code scanning (SARIF report)
       security-events: write
-      # required to commit findings to repository
+      # Required to commit findings to repository
       contents: write
     steps:
       - name: install llvm
@@ -24,11 +24,9 @@ jobs:
       - name: fuzz project
         continue-on-error: true
         run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
-      - name: generate sarif report
+      - name: generate findings report
         run: cifuzz findings --format=sarif --output=results.sarif
-      - name: print sarif report
-        run: cat results.sarif
-      - name: Upload SARIF file
+      - name: Upload findings to Github code scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
