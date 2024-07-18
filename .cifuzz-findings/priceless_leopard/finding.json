@@ -1,0 +1,41 @@
+{
+  "name": "priceless_leopard",
+  "type": "RUNTIME_ERROR",
+  "input_data": "CtIClkkKCgcK",
+  "logs": [
+    "/home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19: runtime error: division by zero",
+    "    #0 0x564b63421f42 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19",
+    "    #1 0x564b63421f42 in LLVMFuzzerTestOneInput /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:9:1",
+    "    #2 0x564b63348343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x40343) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #3 0x564b63347a99 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x3fa99) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #4 0x564b63349289 in fuzzer::Fuzzer::MutateAndTestOne() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41289) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #5 0x564b63349e05 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e \u003e\u0026) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41e05) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #6 0x564b63337f42 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x2ff42) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #7 0x564b63361c32 in main (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x59c32) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #8 0x7faf83429d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #9 0x7faf83429e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #10 0x564b6332c984 in _start (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x24984) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:19 in MS: 2 CrossOver-CMP- DE: \"\\322\\002\\226I\"-; base unit: b4cf34191748bc8b9e67a0080db533a02d1ada33",
+    "0xa,0xd2,0x2,0x96,0x49,0xa,0xa,0x7,0xa,",
+    "\\012\\322\\002\\226I\\012\\012\\007\\012",
+    "artifact_prefix='/tmp/libfuzzer-out-3854238468/'; Test unit written to .cifuzz-findings/priceless_leopard/crashing-input",
+    "Base64: CtIClkkKCgcK"
+  ],
+  "details": "undefined behavior: division by zero",
+  "more_details": {
+    "id": "undefined_behavior"
+  },
+  "created_at": "2024-07-18T15:44:44.185871313Z",
+  "input_file": ".cifuzz-findings/priceless_leopard/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "my_fuzz_test.cpp",
+      "Line": 17,
+      "Column": 19,
+      "FrameNumber": 0,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "my_fuzz_test"
+}
