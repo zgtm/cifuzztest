@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: install llvm
         run: |
-          apt update
-          apt install llvm-16 llvm-16-dev llvm-16-linker-tools llvm-16-runtimellvm-16-tools
+          sudo apt update
+          sudo apt install llvm-16 llvm-16-dev llvm-16-linker-tools llvm-16-runtimellvm-16-tools
       - name: checkout
         uses: "actions/checkout@v4"
       - run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
