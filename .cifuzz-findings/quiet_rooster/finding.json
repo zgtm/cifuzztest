@@ -1,0 +1,42 @@
+{
+  "name": "quiet_rooster",
+  "type": "RUNTIME_ERROR",
+  "input_data": "KlsKkg==",
+  "logs": [
+    "/home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:33: runtime error: signed integer overflow: 1234567890 - -1844815062 cannot be represented in type 'int'",
+    "    #0 0x564a9d00df23 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:33",
+    "    #1 0x564a9d00df23 in LLVMFuzzerTestOneInput /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:9:1",
+    "    #2 0x564a9cf34343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x40343) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #3 0x564a9cf33a99 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x3fa99) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #4 0x564a9cf35289 in fuzzer::Fuzzer::MutateAndTestOne() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41289) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #5 0x564a9cf35e05 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e \u003e\u0026) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41e05) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #6 0x564a9cf23f42 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x2ff42) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #7 0x564a9cf4dc32 in main (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x59c32) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "    #8 0x7f5f5c029d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #9 0x7f5f5c029e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #10 0x564a9cf18984 in _start (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x24984) (BuildId: 84ed726c2f55baa0edcf4bfdc788476cf2c323dc)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:17:33 in MS: 3 ShuffleBytes-InsertByte-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc",
+    "0x2a,0x5b,0xa,0x92,",
+    "*[\\012\\222",
+    "artifact_prefix='/tmp/libfuzzer-out-1434959180/'; Test unit written to .cifuzz-findings/quiet_rooster/crashing-input",
+    "Base64: KlsKkg==",
+    "\tNEW_FUNC[1/1]: 0x564a9d00e3e0 in sanitizer_death_callback_if_non_fatal_finding /home/runner/.local/share/cifuzz/src/dumper.c:31"
+  ],
+  "details": "undefined behavior: signed integer overflow",
+  "more_details": {
+    "id": "signed_integer_overflow"
+  },
+  "created_at": "2024-07-18T15:37:06.087812125Z",
+  "input_file": ".cifuzz-findings/quiet_rooster/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "my_fuzz_test.cpp",
+      "Line": 17,
+      "Column": 33,
+      "FrameNumber": 0,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "my_fuzz_test"
+}
