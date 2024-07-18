@@ -1,0 +1,53 @@
+{
+  "name": "objective_manta",
+  "type": "CRASH",
+  "input_data": "0gKWSf//Cg==",
+  "logs": [
+    "==2699== ERROR: libFuzzer: deadly signal",
+    "    #0 0x557837046ab1 in __sanitizer_print_stack_trace (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0xe6ab1) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #1 0x557836fb9348 in fuzzer::PrintStackTrace() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x59348) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #2 0x557836f9edc3 in fuzzer::Fuzzer::CrashCallback() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x3edc3) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #3 0x7f998f84251f  (/lib/x86_64-linux-gnu/libc.so.6+0x4251f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #4 0x7f998f8969fb in pthread_kill (/lib/x86_64-linux-gnu/libc.so.6+0x969fb) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #5 0x7f998f842475 in gsignal (/lib/x86_64-linux-gnu/libc.so.6+0x42475) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #6 0x7f998f8287f2 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #7 0x7f998f82871a  (/lib/x86_64-linux-gnu/libc.so.6+0x2871a) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #8 0x7f998f839e95 in __assert_fail (/lib/x86_64-linux-gnu/libc.so.6+0x39e95) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #9 0x557837079f3c in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:16:3",
+    "    #10 0x557837079f3c in LLVMFuzzerTestOneInput /home/runner/work/cifuzztest/cifuzztest/my_fuzz_test.cpp:9:1",
+    "    #11 0x557836fa0353 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x40353) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #12 0x557836f9faa9 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x3faa9) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #13 0x557836fa1299 in fuzzer::Fuzzer::MutateAndTestOne() (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41299) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #14 0x557836fa1e15 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e \u003e\u0026) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x41e15) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #15 0x557836f8ff52 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x2ff52) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #16 0x557836fb9c42 in main (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x59c42) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "    #17 0x7f998f829d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #18 0x7f998f829e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 490fef8403240c91833978d494d39e537409b92e)",
+    "    #19 0x557836f84994 in _start (/home/runner/work/cifuzztest/cifuzztest/.cifuzz-build/libfuzzer/address+undefined/my_fuzz_test+0x24994) (BuildId: c18aebaa830ea101571e081864a0d1a0f5973b2d)",
+    "",
+    "NOTE: libFuzzer has rudimentary signal handlers.",
+    "      Combine libFuzzer with AddressSanitizer or similar for better crash reports.",
+    "SUMMARY: libFuzzer: deadly signal",
+    "MS: 5 InsertRepeatedBytes-InsertByte-ChangeBit-EraseBytes-CMP- DE: \"\\322\\002\\226I\"-; base unit: 3f3d2d8955322f325af6db2238355fa07007ebd9",
+    "0xd2,0x2,0x96,0x49,0xff,0xff,0xa,",
+    "\\322\\002\\226I\\377\\377\\012",
+    "artifact_prefix='/tmp/libfuzzer-out-78917939/'; Test unit written to .cifuzz-findings/objective_manta/crashing-input",
+    "Base64: 0gKWSf//Cg=="
+  ],
+  "details": "deadly signal",
+  "more_details": {
+    "id": "deadly_signal"
+  },
+  "created_at": "2024-07-18T15:30:38.615488448Z",
+  "input_file": ".cifuzz-findings/objective_manta/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "my_fuzz_test.cpp",
+      "Line": 16,
+      "Column": 3,
+      "FrameNumber": 9,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "my_fuzz_test"
+}
