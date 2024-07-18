@@ -30,6 +30,8 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
+      # You need to set "Settings" -> "Action" -> "General" -> "Workflow permissions"
+      # to "Read and write permissions" in order to commit new findings!
       - name: commit findings
         run: |
           git config --global user.name 'github-actions[bot]'
