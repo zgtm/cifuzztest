@@ -3,33 +3,45 @@ on: [push]
 jobs:
   fuzz:
     runs-on: ubuntu-latest
-    env: 
+  
+    env:   
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
+      
     permissions:
       # Required to Upload findings to Github code scanning (SARIF report)
       security-events: write
+      
       # Required to commit findings to repository
       contents: write
+      
     steps:
+    
       - name: Install llvm & lcov
         run: |
           sudo apt update
           sudo apt install cmake clang llvm lcov
+          
       - name: Install missing library on ubuntu 24.04
         run: sudo apt install libclang-rt-dev || true
-      - name: checkout
-        uses: "actions/checkout@v4"
+        
       - name: install cifuzz
         run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
-      - name: fuzz project
+        
+      - name: Checkout repository
+        uses: "actions/checkout@v4"
+        
+      - name: Run fuzzing
         continue-on-error: true
         run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
-      - name: generate findings report
+        
+      - name: Generate findings report
         run: cifuzz findings --format=sarif --output=results.sarif
+        
       - name: Upload findings to Github code scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
+          
       - name: Commit findings to repository
         run: |
           git config --global user.name 'github-actions[bot]'
