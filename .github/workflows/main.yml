@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       CIFUZZ_DOWNLOAD_TOKEN: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
+    permissions:
+      # required sarif upload
+      security-events: write
     steps:
       - name: install llvm
         run: |
