@@ -7,4 +7,4 @@ jobs:
     steps:
     
       - name: Test curl
-        run: curl -fsSL https://www.zygentoma.de/
+        run: curl -fsSL https://blog.zgtm.de/
