@@ -15,3 +15,4 @@ runs:
   steps:
     - name: install cifuzz
       run: sh -c "$(curl -fsSL ${{ inputs.installer-url }})" ${{ inputs.download-token }} ${{ inputs.version }}
+      shell: bash
