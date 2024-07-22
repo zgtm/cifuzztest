@@ -1,0 +1,17 @@
+name: 'Install cifuzz'
+description: 'Installs cifuzz given a valid download token'
+inputs:
+  version:
+    required: true
+    type: string
+  installer-url:
+    default: "http://downloads.code-intelligence.com/assets/install-cifuzz.sh" 
+    type: string
+secrets:
+  cifuzz-download-token:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: install cifuzz
+      run: sh -c "$(curl -fsSL ${{ inputs.installer-url }})" ${{ secrets.download-token }} ${{ inputs.version }}
