@@ -1,0 +1,10 @@
+name: test_curl
+on: [push]
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Test curl
+        run: curl -fsSL https://www.zygentoma.de/
