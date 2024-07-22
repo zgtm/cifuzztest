@@ -24,8 +24,10 @@ jobs:
       - name: Install missing library on ubuntu 24.04
         run: sudo apt install libclang-rt-dev || true
         
-      - name: install cifuzz
-        run: sh -c "$(curl -fsSL http://downloads.code-intelligence.com/assets/install-cifuzz.sh)" $CIFUZZ_DOWNLOAD_TOKEN 3.12.0
+      - name: Install cifuzz
+        uses: "zgtm/cifuzztest/install-cifuzz@v1"
+        with:
+          version: 3.12.0
         
       - name: Checkout repository
         uses: "actions/checkout@v4"
