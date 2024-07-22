@@ -25,7 +25,7 @@ jobs:
         run: sudo apt install libclang-rt-dev || true
         
       - name: Install cifuzz
-        uses: "zgtm/cifuzztest/install-cifuzz@v1"
+        uses: "zgtm/cifuzztest/install-cifuzz@v1.1"
         with:
           version: 3.12.0
         
