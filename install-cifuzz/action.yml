@@ -4,7 +4,7 @@ inputs:
   version:
     required: true
     type: string
-  cifuzz-download-token:
+  download-token:
     required: true
     type: string
   installer-url:
