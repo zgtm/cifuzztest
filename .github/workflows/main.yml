@@ -5,21 +5,24 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      # Please comment-out the ones you don't need!
+    
       # Required to Upload findings to Github code scanning (SARIF report)
       security-events: write
       
       # Required to commit findings to repository
-      contents: write
+      # contents: write
       
     steps:
     
-      - name: Install llvm & lcov
+      - name: Install clang, llvm & lcov
         run: |
           sudo apt update
           sudo apt install cmake clang llvm lcov
-          
-      - name: Install missing library on ubuntu 24.04
-        run: sudo apt install libclang-rt-dev || true
+          sudo apt install libclang-rt-dev || true # required on on ubuntu 24.04
+
+      - name: Checkout repository
+        uses: "actions/checkout@v4"
         
       - name: Install cifuzz
         uses: "zgtm/cifuzztest/install-cifuzz@HEAD"
@@ -27,26 +30,19 @@ jobs:
           version: 3.12.0
           download-token: ${{ secrets.CIFUZZ_DOWNLOAD_TOKEN }}
         
-      - name: Checkout repository
-        uses: "actions/checkout@v4"
-        
       - name: Run fuzzing
-        continue-on-error: true
-        run: cifuzz run -v --interactive=false --max-fuzzing-duration 15s
-        
-      - name: Generate findings report
-        run: cifuzz findings --format=sarif --output=results.sarif
-        
-      - name: Upload findings to Github code scanning
-        uses: github/codeql-action/upload-sarif@v3
+        uses: "zgtm/cifuzztest/run-fuzzing@HEAD"
         with:
-          sarif_file: results.sarif
+          duration: 15s
+        
+      - name: Upload code-scanning report
+        uses: "zgtm/cifuzztest/upload-code-scanning-report@HEAD"
           
-      - name: Commit findings and corpus to repository
-        run: |
-          git config --global user.name 'Github Action'
-          git config --global user.email 'zgtm@users.noreply.github.com'
-          git add .cifuzz-findings
-          git add .cifuzz-corpus
-          git commit -m "Automated check-in of cifuzz findings"
-          git push
+      #- name: Commit findings and corpus to repository
+      #  run: |
+      #    git config --global user.name 'Github Action'
+      #    git config --global user.email 'zgtm@users.noreply.github.com'
+      #    git add .cifuzz-findings
+      #    git add .cifuzz-corpus
+      #    git commit -m "Automated check-in of cifuzz findings"
+      #    git push
