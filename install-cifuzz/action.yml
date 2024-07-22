@@ -4,12 +4,12 @@ inputs:
   version:
     required: true
     type: string
+  cifuzz-download-token:
+    required: true
+    type: string
   installer-url:
     default: "http://downloads.code-intelligence.com/assets/install-cifuzz.sh" 
     type: string
-secrets:
-  cifuzz-download-token:
-    required: true
 runs:
   using: "composite"
   steps:
