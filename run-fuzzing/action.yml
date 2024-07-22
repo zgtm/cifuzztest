@@ -1,0 +1,14 @@
+name: 'Run fuzzing'
+description: 'Runs cifuzz for a specified duration (default "10m")'
+inputs:
+  duration:
+    default: "10m" 
+    type: string
+runs:
+  using: "composite"
+  steps:
+    - name: run fuzzing
+      continue-on-error: true
+      run: cifuzz run -v --interactive=false --max-fuzzing-duration ${{ inputs.duration }}
+      shell: bash
+      
