@@ -1,0 +1,14 @@
+name: 'Upload code-scanning results'
+description: 'Generates a SARIF report and uploads it to Github'
+runs:
+  using: "composite"
+  steps:
+      - name: Generate findings report
+        run: cifuzz findings --format=sarif --output=results.sarif
+        shell: bash
+        
+      - name: Upload findings to Github code scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
+        shell: bash
