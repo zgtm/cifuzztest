@@ -14,4 +14,4 @@ runs:
   using: "composite"
   steps:
     - name: install cifuzz
-      run: sh -c "$(curl -fsSL ${{ inputs.installer-url }})" ${{ secrets.download-token }} ${{ inputs.version }}
+      run: sh -c "$(curl -fsSL ${{ inputs.installer-url }})" ${{ inputs.download-token }} ${{ inputs.version }}
