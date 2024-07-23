@@ -46,3 +46,27 @@ jobs:
       #    git add .cifuzz-corpus
       #    git commit -m "Automated check-in of cifuzz findings"
       #    git push
+
+      - name: Generate artifacts
+        run: |
+          cifuzz coverage --format=html --output coverage_report --plain
+          cifuzz coverage --format=lcov --output lcov.info --plain
+          cifuzz findings --plain > findings.txt
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cifuzz-coverage
+          path: coverage_report
+
+      - name: Upload lcov report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cifuzz-coverage-lcov
+          path: lcov.info
+
+      - name: Upload findings report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cifuzz-findings
+          path: findings.txt
