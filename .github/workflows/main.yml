@@ -33,7 +33,7 @@ jobs:
       #
       # - name: Copy corpus from cloud storage
       #   mkdir -p .cifuzz-corpus
-      #   rclone copy cloud-storage:corpora/PROJECT_NAME/.cifuzz-corpus .cifuzz-corpus -v
+      #   rclone copy -v cloud-storage:corpora/PROJECT_NAME .cifuzz-corpus
 
       - name: Run fuzzing
         uses: "zgtm/cifuzztest/run-fuzzing@HEAD"
@@ -43,7 +43,7 @@ jobs:
       # Syncronise fuzzing corpus – uncomment and adapt to your storage method
       #
       # - name: Copy corpus to cloud storage
-      #   rclone copy .cifuzz-corpus cloud-storage:corpora/PROJECT_NAME/.cifuzz-corpus -v
+      #   rclone copy -v .cifuzz-corpus cloud-storage:corpora/PROJECT_NAME
 
       - name: Upload code-scanning report
         uses: "zgtm/cifuzztest/upload-code-scanning-report@HEAD"
