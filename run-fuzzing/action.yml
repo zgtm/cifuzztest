@@ -8,7 +8,10 @@ runs:
   using: "composite"
   steps:
     - name: run fuzzing
-      continue-on-error: true
-      run: cifuzz run -v --interactive=false --max-fuzzing-duration ${{ inputs.duration }}
+      run: | 
+        set -e
+        cifuzz run -v --interactive=false --max-fuzzing-duration ${{ inputs.duration }}
+        export BLUB="hi"
+        set +e
       shell: bash
       
