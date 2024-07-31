@@ -9,9 +9,9 @@ runs:
   steps:
     - name: run fuzzing
       run: | 
-        set -e
+        set +e
         cifuzz run -v --interactive=false --max-fuzzing-duration ${{ inputs.duration }}
         export BLUB="hi"
-        set +e
+        set -e
       shell: bash
       
