@@ -82,3 +82,7 @@ jobs:
         with:
           name: cifuzz-findings
           path: findings.txt
+
+      - name: echo blub
+        run: |
+          echo $BLUB
